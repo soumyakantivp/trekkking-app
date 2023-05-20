@@ -3,10 +3,11 @@ package com.trek.easy.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.trek.easy.model.Blog;
 import com.trek.easy.repo.BlogRepo;
-
+@Service
 public class BlogService implements ServiceCRUD<Blog, Integer>{
 
 	@Autowired

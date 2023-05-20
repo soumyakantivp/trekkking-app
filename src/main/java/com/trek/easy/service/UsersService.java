@@ -3,10 +3,11 @@ package com.trek.easy.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.trek.easy.model.Users;
 import com.trek.easy.repo.UsersRepo;
-
+@Service
 public class UsersService implements ServiceCRUD<Users, Integer>{
 
 	@Autowired
