@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.trek.easy.model.Orders;
+import com.trek.easy.model.Orders;
 import com.trek.easy.repo.OrderRepo;
 @Service
 public class OrdersService implements ServiceCRUD<Orders, Integer>{
@@ -20,8 +21,7 @@ public class OrdersService implements ServiceCRUD<Orders, Integer>{
 
 	@Override
 	public void update(Orders obj) {
-		repo.save(obj);
-		
+		// TODO
 	}
 
 	@Override

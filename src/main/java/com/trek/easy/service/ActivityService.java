@@ -20,8 +20,14 @@ public class ActivityService implements ServiceCRUD<Activity, Integer>{
 
 	@Override
 	public void update(Activity obj) {
-		repo.save(obj);
-		
+		Activity savedObj = repo.findById(obj.getActivityid()).get();
+		savedObj.setBlog(obj.getBlog());
+		savedObj.setDescription(obj.getDescription());
+		savedObj.setImage(obj.getImage());
+		savedObj.setLocation(obj.getLocation());
+		savedObj.setPrice(obj.getPrice());
+		savedObj.setReviews(obj.getReviews());
+		repo.save(savedObj);		
 	}
 
 	@Override

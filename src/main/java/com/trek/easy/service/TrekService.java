@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.trek.easy.model.Activity;
 import com.trek.easy.model.Trek;
 import com.trek.easy.repo.TrekRepo;
 @Service
@@ -20,7 +21,13 @@ public class TrekService implements ServiceCRUD<Trek, Integer>{
 
 	@Override
 	public void update(Trek obj) {
-		repo.save(obj);
+		Trek savedObj = repo.findById(obj.getTrekid()).get();
+		savedObj.setBlog(obj.getBlog());
+		savedObj.setImage(obj.getImage());
+		savedObj.setLocation(obj.getLocation());
+		savedObj.setReviews(obj.getReviews());
+		savedObj.setTags(obj.getTags());
+		repo.save(savedObj);
 		
 	}
 

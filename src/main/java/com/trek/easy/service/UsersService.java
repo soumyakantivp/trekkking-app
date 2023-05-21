@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.trek.easy.model.Users;
+import com.trek.easy.model.Users;
 import com.trek.easy.repo.UsersRepo;
 @Service
 public class UsersService implements ServiceCRUD<Users, Integer>{
@@ -20,7 +21,13 @@ public class UsersService implements ServiceCRUD<Users, Integer>{
 
 	@Override
 	public void update(Users obj) {
-		repo.save(obj);
+		Users savedObj = repo.findById(obj.getId()).get();
+		savedObj.setOrders(obj.getOrders());
+		savedObj.setPassword(obj.getPassword());
+		savedObj.setRoles(obj.getRoles());
+		savedObj.setUsername(obj.getUsername());
+		savedObj.setWallet(obj.getWallet());
+		repo.save(savedObj);
 		
 	}
 
@@ -38,6 +45,11 @@ public class UsersService implements ServiceCRUD<Users, Integer>{
 	@Override
 	public List<Users> getAll() {
 		return repo.findAll();
+	}
+
+	public Users findUserByUserName(String username) {
+		// TODO Auto-generated method stub
+		return repo.findUserByUsername(username);
 	}
 	
 

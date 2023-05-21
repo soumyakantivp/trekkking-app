@@ -2,6 +2,8 @@ package com.trek.easy.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,8 +27,10 @@ public class Activity {
 	private String description;
 	private Double price;
 	@OneToOne
+	@JsonIgnore
 	private Blog blog;
 	@OneToMany
+	@JsonIgnore
 	private List<Review> reviews;
 	private String location;
 	private String image;

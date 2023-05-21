@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.trek.easy.model.Activity;
 import com.trek.easy.model.Review;
 import com.trek.easy.repo.ReviewRepo;
 @Service
@@ -20,7 +21,15 @@ public class ReviewService implements ServiceCRUD<Review, Integer>{
 
 	@Override
 	public void update(Review obj) {
-		repo.save(obj);
+		Review savedObj = repo.findById(obj.getRevid()).get();
+		savedObj.setActivity(obj.getActivity());
+		savedObj.setDesc(obj.getDesc());
+		savedObj.setHotel(obj.getHotel());
+		savedObj.setTrek(obj.getTrek());
+		savedObj.setUser(obj.getUser());
+		savedObj.setLinks(obj.getLinks());
+		savedObj.setRating(obj.getRating());
+		repo.save(savedObj);
 		
 	}
 

@@ -6,4 +6,6 @@ import com.trek.easy.model.Users;
 
 public interface UsersRepo extends JpaRepository<Users, Integer>{
 
+	Users findUserByUsername(String username);
+
 }

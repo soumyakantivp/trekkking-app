@@ -50,5 +50,16 @@ public class UsersController implements ControllerCRUD<Users, Integer> {
 	public List<Users> getAll() {
 		return service.getAll();
 	}
+	
+	@GetMapping("/login")
+	public Users login(@RequestBody Users obj) {
+		Users user = service.findUserByUserName(obj.getUsername());
+		if(user != null) {
+			if(user.getPassword().equals(obj.getPassword())) {
+				return user;
+			}
+		}
+		return null;
+	}
 
 }
