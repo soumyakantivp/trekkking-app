@@ -28,6 +28,8 @@ public class Orders {
 	private Hotel hotel;
 	@OneToOne
 	private Activity activity;
+	@OneToOne
+	private Users user;
 	private String fromDate;
 	private String toDate;
 	private Integer count; // order count 
