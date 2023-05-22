@@ -48,6 +48,11 @@ public class HotelService implements ServiceCRUD<Hotel, Integer>{
 	public List<Hotel> getAll() {
 		return repo.findAll();
 	}
+
+	public List<Hotel> findHotelsByLocation(String location) {
+		// TODO Auto-generated method stub
+		return repo.findHotelByLocation(location);
+	}
 	
 
 }

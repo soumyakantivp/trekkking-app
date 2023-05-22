@@ -22,6 +22,8 @@ public class UsersController implements ControllerCRUD<Users, Integer> {
 	@Override
 	@PostMapping("/add")
 	public int add(@RequestBody Users obj) {
+		if(service.findUserByUserName(obj.getUsername()) != null)
+			return 400; // user exists
 		service.add(obj);
 		return 200;
 	}
