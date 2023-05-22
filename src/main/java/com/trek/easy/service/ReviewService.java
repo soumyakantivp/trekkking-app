@@ -23,7 +23,7 @@ public class ReviewService implements ServiceCRUD<Review, Integer>{
 	public void update(Review obj) {
 		Review savedObj = repo.findById(obj.getRevid()).get();
 		savedObj.setActivity(obj.getActivity());
-		savedObj.setDesc(obj.getDesc());
+		savedObj.setDescription(obj.getDescription());
 		savedObj.setHotel(obj.getHotel());
 		savedObj.setTrek(obj.getTrek());
 		savedObj.setUser(obj.getUser());

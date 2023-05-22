@@ -19,7 +19,7 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer revid;
-	private String desc;
+	private String description;
 	private String links;
 	@OneToOne
 	private Trek trek;
