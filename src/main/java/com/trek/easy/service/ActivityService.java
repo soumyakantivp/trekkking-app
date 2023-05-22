@@ -46,6 +46,11 @@ public class ActivityService implements ServiceCRUD<Activity, Integer>{
 	public List<Activity> getAll() {
 		return repo.findAll();
 	}
+
+	public List<Activity> findActivitiesByLocation(String location) {
+		// TODO Auto-generated method stub
+		return repo.findActivityByLocation(location);
+	}
 	
 
 }
