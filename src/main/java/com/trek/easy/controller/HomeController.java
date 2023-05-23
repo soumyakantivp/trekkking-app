@@ -17,6 +17,7 @@ import com.trek.easy.model.Orders;
 import com.trek.easy.model.Review;
 import com.trek.easy.model.Trek;
 import com.trek.easy.model.Users;
+import com.trek.easy.model.Weather;
 import com.trek.easy.service.ActivityService;
 import com.trek.easy.service.HotelService;
 import com.trek.easy.service.OrdersService;
@@ -105,5 +106,39 @@ public class HomeController {
 		Users user = userService.get(userid);
 		return user.getOrders();
 	}
+	
+	@GetMapping("/weather")
+	public Weather getWeather() {
+		String tags[] = {"sunny","overcast","rainy","snow"};
+		String images[] = {"https://images.unsplash.com/photo-1533324268742-60b233802eef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+				"https://images.unsplash.com/photo-1499956827185-0d63ee78a910?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+				"https://images.unsplash.com/photo-1433863448220-78aaa064ff47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80",
+				"https://images.unsplash.com/photo-1609700930660-8573f28f8e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"};
+		double temp = 20 + (Math.random()*20);
+		Weather weather = new Weather();
+		weather.setTemperature(temp);
+		weather.setHumidity(Math.random()*100);
+		int rand = (int)(4*Math.random());
+		weather.setImage(images[rand]);
+		weather.setTag(tags[rand]);
+		return weather;
+	}
 
+	@GetMapping("/check/order/{userid}/{trekid}")
+	public boolean checkIfOrderPresentForUserAndTrek(@PathVariable Integer userid, @PathVariable Integer trekid) {
+		Users user = userService.get(userid);
+		return user.getOrders().stream().filter(o->o.getTrek()!=null).anyMatch(o->o.getTrek().getTrekid().equals(trekid));
+
+	}
+	
+	// admin
+	@GetMapping("/admin/approve/{orderid}")
+	public int approve(@PathVariable Integer orderid) {
+		Orders order = orderService.get(orderid);
+		if(order == null)
+			return 400;
+		order.setStatus("approved");
+		orderService.update(order);
+		return 200;
+	}
 }
